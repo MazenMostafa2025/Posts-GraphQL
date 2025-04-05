@@ -1,0 +1,81 @@
+# schema.graphql
+
+input CreatePostInput {
+  title: String!
+  content: String!
+}
+
+input UpdatePostInput {
+  id: Int!
+  title: String
+  content: String
+}
+
+input SignUpInput {
+  name: String!
+  email: String!
+  password: String!
+}
+
+input SignInInput {
+  email: String!
+  password: String!
+}
+
+enum Role {
+  USER
+  MODERATOR
+  ADMIN
+}
+
+type User {
+  id: Int!
+  name: String!
+  email: String!
+  role: Role!
+  posts: [Post!]!
+}
+
+type Post {
+  id: Int!
+  title: String!
+  content: String!
+  author: User!
+  createdAt: String!
+  updatedAt: String
+  isDeleted: Boolean!
+}
+
+type AuthPayload {
+  user: User!
+  token: String!
+}
+
+type PaginatedPosts {
+  posts: [Post!]!
+  totalPosts: Int!
+  totalPages: Int!
+  currentPage: Int!
+}
+
+type Query {
+  users: [User!]!
+  user(id: Int!): User
+  posts(
+    page: Int
+    limit: Int
+    title: String
+    content: String
+    authorId: Int
+    cursor: Int
+  ): PaginatedPosts!
+  post(id: Int!): Post!
+}
+
+type Mutation {
+  signup(input: SignUpInput!): AuthPayload!
+  login(input: SignInInput!): AuthPayload!
+  createPost(input: CreatePostInput!): Post!
+  updatePost(input: UpdatePostInput!): Post!
+  deletePost(id: Int!): String!
+}

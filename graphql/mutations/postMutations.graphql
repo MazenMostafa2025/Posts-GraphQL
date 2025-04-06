@@ -1,0 +1,5 @@
+extend type Mutation {
+  createPost(input: CreatePostInput!): Post!
+  updatePost(input: UpdatePostInput!): Post!
+  deletePost(id: Int!): String!
+}

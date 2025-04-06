@@ -1,0 +1,27 @@
+type Post {
+  id: Int!
+  title: String!
+  content: String!
+  author: User!
+  createdAt: String!
+  updatedAt: String
+  isDeleted: Boolean!
+}
+
+type PaginatedPosts {
+  posts: [Post!]!
+  totalPosts: Int!
+  totalPages: Int!
+  currentPage: Int!
+}
+
+input CreatePostInput {
+  title: String!
+  content: String!
+}
+
+input UpdatePostInput {
+  id: Int!
+  title: String
+  content: String
+}

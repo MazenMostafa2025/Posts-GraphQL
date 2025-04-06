@@ -1,0 +1,29 @@
+enum Role {
+  USER
+  MODERATOR
+  ADMIN
+}
+
+type User {
+  id: Int!
+  name: String!
+  email: String!
+  role: Role!
+  posts: [Post!]!
+}
+
+type AuthPayload {
+  user: User!
+  token: String!
+}
+
+input SignUpInput {
+  name: String!
+  email: String!
+  password: String!
+}
+
+input SignInInput {
+  email: String!
+  password: String!
+}

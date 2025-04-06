@@ -1,14 +1,11 @@
+const { requireAuth } = require('../../auth');
+const { isOwnerOrAdmin } = require('../../utils/permissions');
+const prisma = require('../../prismaClient');
 
-const { generateToken, hashPassword, comparePassword } = require('./auth');
-const requireAuth = require('./middlewares/authGuard');
-const requireRoles = require('./middlewares/roleMiddleware');
-const { isOwnerOrAdmin } = require('./utils/permissions');
-
-const resolvers = {
+const postResolvers = {
   Query: {
-    users: async () => await prisma.user.findMany(),
-    user: async (_, args) => await prisma.user.findUnique({where: { id: args.id }}),
-    posts: async (_, {page=1, limit=10, title, content, authorId}) => {
+    post: async (_, args) => await prisma.post.findUnique({ where: { id: args.id, isDeleted: false }}),
+    posts: async (_, { page=1, limit=10, title, content, authorId}) => {
       const skip = (page-1)*limit;
       const whereConditions = {
         isDeleted: false,
@@ -57,32 +54,9 @@ const resolvers = {
     //     currentPage,
     //   };
     // },
-    post: async (_, args) => await prisma.post.findUnique({ where: { id: args.id, isDeleted: false }}),
-    },
+
+  },
   Mutation: {
-    signup: async (_, { input }) => {
-      const {name, email, password} = input;
-      const existingUser = await prisma.user.findUnique({ where: { email } });
-      if (existingUser) throw new Error('User already exists');
-      const hashedPassword = await hashPassword(password);
-      const user = await prisma.user.create({
-        data: {
-          name,
-          email,
-          password: hashedPassword,
-        },
-      });
-      const token = generateToken(user);
-      return { user, token };
-    },
-    login: async (_, { input }) => {
-      const { email, password } = input;
-      const user = await prisma.user.findUnique({ where: { email } });
-      const isValid = await comparePassword( password, user.password );
-      if (!user || !isValid) throw new Error('wrong credentials');
-      const token = generateToken(user);
-      return { user, token };
-    },
     createPost: async (_, { input }, context) => {
       const { title, content } = input;
       const user = requireAuth(context);
@@ -128,7 +102,7 @@ const resolvers = {
       }
       return 'Post deleted successfully';
     },
-  },
-};
+  }
+}
 
-module.exports = resolvers;
+module.exports = postResolvers;

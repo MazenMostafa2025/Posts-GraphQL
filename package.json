@@ -12,6 +12,7 @@
   "type": "commonjs",
   "dependencies": {
     "@apollo/server": "^4.11.3",
+    "@graphql-tools/load-files": "^7.0.1",
     "@graphql-tools/schema": "^10.0.23",
     "@prisma/client": "^6.5.0",
     "bcryptjs": "^3.0.2",

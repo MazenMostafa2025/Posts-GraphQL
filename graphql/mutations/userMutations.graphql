@@ -1,0 +1,4 @@
+extend type Mutation {
+  signup(input: SignUpInput!): AuthPayload!
+  login(input: SignInInput!): AuthPayload!
+}

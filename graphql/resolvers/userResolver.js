@@ -31,6 +31,11 @@ const userResolvers = {
         return { user, token };
       },
   },
+  User: {
+    posts: (parent, _, context) => {
+      return context.postLoader.load(parent.id);
+    }
+  }
 };
 
 module.exports = userResolvers;

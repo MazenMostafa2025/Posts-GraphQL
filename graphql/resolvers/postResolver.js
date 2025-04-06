@@ -102,6 +102,9 @@ const postResolvers = {
       }
       return 'Post deleted successfully';
     },
+  },
+  Post: {
+    author: async (parent, _, context) => await context.userLoader.load(parent.authorId),
   }
 }
 

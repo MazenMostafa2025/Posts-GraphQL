@@ -1,4 +1,6 @@
 const { verifyToken } = require('./auth');
+const postLoader = require('./loaders/postLoader');
+const userLoader = require('./loaders/userLoader');
 
 const buildContext = async ({ req }) => {
   const authHeader = req.headers.authorization || '';
@@ -16,7 +18,7 @@ const buildContext = async ({ req }) => {
   }
 
   // If not Bearer, just skip auth (user stays null)
-  return { user };
+  return { user, userLoader: userLoader(), postLoader: postLoader() };
 };
 
 module.exports = buildContext;

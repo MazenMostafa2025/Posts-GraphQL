@@ -17,3 +17,9 @@ module.exports = (batchFunction) => {
     return keys.map((key) => map.get(key) || null);
   });
 };
+
+// if expecting high concurrency or spike of nested requests
+// this will delay the batch allowing other .load() 
+// new DataLoader(batchFn, {
+//   batchScheduleFn: callback => setTimeout(callback, 0) // microtask batching
+// });

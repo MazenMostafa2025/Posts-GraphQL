@@ -1,0 +1,9 @@
+type Message {
+  id: ID!
+  content: String!
+  sender: String!
+}
+
+type Subscription {
+  messageReceived: Message
+}

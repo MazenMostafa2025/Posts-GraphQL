@@ -27,11 +27,10 @@ const schema = makeExecutableSchema({
   resolvers,
 });
 
-const router = express.Router();
 const app = express();
 app.use(express.json());
 
-const server = new ApolloServer({ schema });
+const server = new ApolloServer({ schema,  subscriptions: false });
 
 async function startServer() {
   
@@ -42,9 +41,9 @@ async function startServer() {
   }));
 
   const PORT = 4000;
-  app.listen(PORT, () =>
-    console.log(`🚀 Server ready at http://localhost:${PORT}/graphql`)
-  );
+  app.listen(PORT, () => {
+    console.log(`🚀 Server ready at http://localhost:${PORT}/graphql`);
+  });
 }
 
 startServer();

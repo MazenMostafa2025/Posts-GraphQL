@@ -8,7 +8,7 @@ A high-performance GraphQL API built using **Node.js**, **Express**, **Apollo Se
 
 - **Backend Framework**: Node.js + Express (v5)
 - **GraphQL Server**: Apollo Server with schema-first approach
-- **Database ORM**: Prisma + PostgreSQL (or your preferred DB)
+- **Database ORM**: Prisma + SQLite (or your preferred DB)
 - **Authentication**: JWT-based
 - **DataLoader**: For solving N+1 problems efficiently
 ---
@@ -21,5 +21,4 @@ A high-performance GraphQL API built using **Node.js**, **Express**, **Apollo Se
 - ✅ DataLoader for batching and caching DB requests
 - ✅ Context-based access control
 - ✅ Modular GraphQL schema with separate resolvers
-- ✅ Custom scalar types, directives, and loaders
 - ✅ Ready for integration with frontend

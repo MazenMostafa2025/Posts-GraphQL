@@ -1,4 +1,4 @@
-# 🚀 Full-Stack GraphQL API with Node.js, Express, and Prisma
+# 🚀 GraphQL API with Node.js, Express, and Prisma
 
 A high-performance GraphQL API built using **Node.js**, **Express**, **Apollo Server**, and **Prisma ORM**. This project showcases best practices in GraphQL development, including authentication, authorization, efficient data fetching with **DataLoader**, soft deletes, pagination, and schema-based design.
 
@@ -6,9 +6,9 @@ A high-performance GraphQL API built using **Node.js**, **Express**, **Apollo Se
 
 ## 🔧 Tech Stack
 
-- **Backend Framework**: Node.js + Express (v5)
-- **GraphQL Server**: Apollo Server with schema-first approach
-- **Database ORM**: Prisma + SQLite (or your preferred DB)
+- **Backend Framework**: Node.js + Express
+- **GraphQL Server**: Apollo Server
+- **Database ORM**: Prisma + SQLite
 - **Authentication**: JWT-based
 - **DataLoader**: For solving N+1 problems efficiently
 ---
